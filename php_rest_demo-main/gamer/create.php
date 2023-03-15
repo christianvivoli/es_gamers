@@ -19,10 +19,10 @@ $gamer = new Gamer($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input", true));
-
 // set department property value
-$gamer->name = $data->name;
-
+$gamer->nickname = $data->nickname;
+$gamer->age = $data->age;
+$gamer->level = $data->level;
 // create the department
 if ($gamer->create()) {
     echo '{';

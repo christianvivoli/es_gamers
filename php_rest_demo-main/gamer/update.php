@@ -15,7 +15,7 @@ $database = new Db();
 $db = $database->getConnection();
 
 // initialize object
-$gamer = new Department($db);
+$gamer = new Gamer($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input", true));
@@ -26,7 +26,7 @@ $gamer->id = $data->id;
 $gamer->name = $data->name;
 
 // update the department
-if ($department->update()) {
+if ($gamer->update()) {
     echo '{';
     echo '"message": "Gamer was updated."';
     echo '}';

@@ -44,14 +44,18 @@ class Gamer
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-                nickname=:name";
+                nickname=:nickname, 
+                age=:age, 
+                level=:level ";
         // prepare query
         $stmt = $this->conn->prepare($query);
         // sanitize
         $this->name = htmlspecialchars(strip_tags($this->name));
 
         // bind values
-        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":nickname", $this->nickname);
+        $stmt->bindParam(":age", $this->age);
+        $stmt->bindParam(":level", $this->level);
 
         // execute query
         if ($stmt->execute()) {
@@ -68,10 +72,11 @@ class Gamer
         $query = "UPDATE
                 " . $this->table_name . "
             SET
-                nickname = :name
+                nickname = :name,
+                age=:age, 
+                level=:level                 
             WHERE
                 id = :id";
-
         // prepare query statement
         $stmt = $this->conn->prepare($query);
 
@@ -80,8 +85,10 @@ class Gamer
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         // bind new values
-        $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':nickname', $this->nickname);
+        $stmt->bindParam(':age', $this->age);
+        $stmt->bindParam(':level', $this->level);
 
         // execute the query
         if ($stmt->execute()) {
